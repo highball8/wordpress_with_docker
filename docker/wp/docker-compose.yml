@@ -1,0 +1,55 @@
+# Create a local WordPress environment using Docker containers.
+# Check your Docker Compose Version using the command docker-compose -v and this chart: https://docs.docker.com/compose/compose-file/
+
+version: '3.7' 
+
+services:
+  wp_db:
+    container_name: wp_db
+    image: mariadb:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+    - wp_network
+
+  wp:
+    container_name: wp
+    depends_on:
+      - wp_db
+    image: wordpress:latest
+    volumes:
+      - ./wordpress:/var/www/html
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: wp_db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+    - wp_network
+  
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - wp_db
+    restart: unless-stopped
+    ports:
+      - 8181:80
+    environment:
+      PMA_HOST: wp_db
+      MYSQL_ROOT_PASSWORD: wordpress
+    networks:
+    - wp_network
+
+networks:
+  wp_network:
+    driver: bridge

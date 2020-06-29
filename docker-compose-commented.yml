@@ -1,0 +1,55 @@
+# Create a local WordPress environment using Docker containers.
+# Check your Docker Compose Version using the command docker-compose -v and this chart: https://docs.docker.com/compose/compose-file/
+
+version: '3.7' 
+
+services: # Define each service.
+  wp_db: # Name of the service (MariaDB server to provide MySQL for a WordPress site).
+    container_name: wp_db # Give a name to the container.
+    image: mariadb:latest # The image that will be pulled and run as a container.
+    volumes: # Create storage on host machine for /var/lib/mysql.
+      - ./mysql:/var/lib/mysql # <host_filepath>:<container_filepath>
+    restart: unless-stopped # Container will always restart.
+    environment: # Pass environment variables to the MariaDB. 
+      MYSQL_ROOT_PASSWORD: wordpress # The password for root.
+      MYSQL_DATABASE: wordpress # Create a database named wordpress.
+      MYSQL_USER: wordpress # Create user, wordpress, with access to that database.
+      MYSQL_PASSWORD: wordpress # Set password for user wordpress.
+    networks: # Connects the container to an internal Docker network.
+    - wp_network # Name of the internal Docker network.
+
+  wp: # Name of the service (WordPress container to provide an Apache web server and PHP).
+    container_name: wp # Give a name to the container.
+    depends_on: # Creates a dependency to other services.
+      - wp_db # Name of the service that provides MySQL for a WordPress site.
+    image: wordpress:latest # The image that will be pulled and run as a container.
+    volumes: # Create storage on host machine for WordPress installation.
+      - ./wordpress:/var/www/html # <host_filepath>:<container_filepath>
+    restart: unless-stopped # Container will always restart.
+    ports: # Expose ports on the container.
+      - "8080:80" # Port-forwarding. <host_port>:<container_port>
+    environment: # Pass environment variables about the database service to the WordPress installation’s wp-config.php file.
+      WORDPRESS_DB_HOST: wp_db:3306 # The MySQL hostname value in wp-config.php. Connect to the wp_db container over port 3306.
+      WORDPRESS_DB_USER: wordpress # Use the same value as the wp_db service’s MYSQL_USER.
+      WORDPRESS_DB_PASSWORD: wordpress # Use the same value as the wp_db service’s MYSQL_PASSWORD.
+      WORDPRESS_DB_NAME: wordpress # Use the same value as the wp_db service’s MYSQL_DATABASE.
+    networks: # Makes the container available on an internal Docker network.
+    - wp_network # Name of the internal Docker network.
+
+  phpmyadmin: # Name of the service (phpMyAdmin container for working with WordPress databases).
+    container_name: phpmyadmin # Give a name to the container providing phpMyAdmin.
+    image: phpmyadmin/phpmyadmin:latest # Define the image that will be pulled and run as a container.
+    depends_on: # Creates a dependency to other services.
+      - wp_db # Name of the service that provides MySQL for a WordPress site.
+    restart: unless-stopped # Container will always restart.
+    ports: # Expose ports on the container.
+      - 8181:80 # Port-forwarding. <host_port>:<container_port>
+    environment:
+      PMA_HOST: wp_db # The name of the database service.
+      MYSQL_ROOT_PASSWORD: wordpress # The password for root.
+    networks: # Makes the container available on an internal Docker network.
+    - wp_network # Name of the internal Docker network.
+
+networks: # Create an internal Docker network.
+  wp_network: # Name of the internal Docker network.
+    driver: bridge
