@@ -1,5 +1,5 @@
 # phpMyAdmin Dockerfile: Create container from official phpmyadmin/phpmyadmin:latest image, update, and replace php.ini file.
-# docker build -t beerspillphil:pma_custom_1.0 .
+# docker build -t phpmyadmin_local:phpmyadmin_custom_1.0 .
 
 FROM phpmyadmin/phpmyadmin:latest
 
