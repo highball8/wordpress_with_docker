@@ -20,9 +20,9 @@ services:
 
   wp:
     container_name: wp
+    image: wordpress:latest
     depends_on:
       - wp_db
-    image: wordpress:latest
     volumes:
       - ./wordpress:/var/www/html
     restart: unless-stopped
