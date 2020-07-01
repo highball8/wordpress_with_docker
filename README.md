@@ -22,19 +22,39 @@ This tutorial requires you to have some familiarity with and knowledge of the Li
 
 ## Contents of this Repo
 
-.\
-├── `README.md`: This README file.\
-├── `docker`: In the tutorial, I suggest the reader create a directory for all Docker projects.\
-│   ├── `dockerfiles`: Directories for two Dockerfiles, described in [WordPress and Docker: Build custom images with Dockerfiles](https://www.massolit-media.com/teßch-writing/wordpress-and-docker-dockerfiles/).\
-│   │   ├── `phpmyadmin`: Create a customized phpMyAdmin image.\
-│   │   │   ├── `dockerfile`: Dockerfile to create a customized phpMyAdmin image.\
-│   │   │   └── `php.ini`: A PHP.ini file to include in the new image using the `COPY` instruction.\
-│   │   └── `wordpress`: Create a customized WordPress image.\
-│   │       ├── `dockerfile`: Dockerfile to create a customized phpMyAdmin image.\
-│   │       └── `php.ini`: A PHP.ini file to include in the new image using the `COPY` instruction.\
-│   ├── `wp`: I suggest the reader create individual directories for each Docker Compose project. `wp` for WordPress.\
-│   │   └── `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Using Docker Compose](https://www.massolit-media.com/tech-writing/wordpress-and-docker-using-docker-compose/).\
-│   └── `wp_final`: A final version of a Docker Compose project that creates a local WordPress environment.\
-│       └── `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Putting it all together](https://www.massolit-media.com/tech-writing/wordpress-and-docker-conclusion/). This version includes a configuration that will build images from Dockerfiles before creating the network and containers.\
-└── `docker-compose-commented.yml`: A heavily commented version of the Docker Compose file from [WordPress and Docker: Using Docker Compose](https://www.massolit-media.com/tech-writing/wordpress-and-docker-using-docker-compose/). I think it can be helpful for explaining to somebody new to Docker to understanding Docker Compose and its YAML structure.\
+### Directory Tree
 
+```bash
+.
+├── README.md
+├── docker
+│   ├── dockerfiles
+│   │   ├── phpmyadmin
+│   │   │   ├── dockerfile
+│   │   │   └── php.ini
+│   │   └── wordpress
+│   │       ├── dockerfile
+│   │       └── php.ini
+│   ├── wp
+│   │   └── docker-compose.yml
+│   └── wp_final
+│       └── docker-compose.yml
+└── docker-compose-commented.yml
+```
+
+### Description
+
+* `README.md`: This README file.\
+* `docker`: In the tutorial, I suggest the reader create a directory for all Docker projects.\
+  * `dockerfiles`: Directories for two Dockerfiles, described in [WordPress and Docker: Build custom images with Dockerfiles](https://www.massolit-media.com/teßch-writing/wordpress-and-docker-dockerfiles/).\
+     * `phpmyadmin`: Create a customized phpMyAdmin image.\
+        * `dockerfile`: Dockerfile to create a customized phpMyAdmin image.\
+        * `php.ini`: A PHP.ini file to include in the new image using the `COPY` instruction.\
+     * `wordpress`: Create a customized WordPress image.\
+        * `dockerfile`: Dockerfile to create a customized phpMyAdmin image.\
+        * `php.ini`: A PHP.ini file to include in the new image using the `COPY` instruction.\
+  * `wp`: I suggest the reader create individual directories for each Docker Compose project. `wp` for WordPress.\
+     * `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Using Docker Compose](https://www.massolit-media.com/tech-writing/wordpress-and-docker-using-docker-compose/).\
+  * `wp_final`: A final version of a Docker Compose project that creates a local WordPress environment.\
+    * `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Putting it all together](https://www.massolit-media.com/tech-writing/wordpress-and-docker-conclusion/). This version includes a configuration that will build images from Dockerfiles before creating the network and containers.\
+* `docker-compose-commented.yml`: A heavily commented version of the Docker Compose file from [WordPress and Docker: Using Docker Compose](https://www.massolit-m
