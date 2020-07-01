@@ -25,7 +25,7 @@ This tutorial requires you to have some familiarity with and knowledge of the Li
 .\
 ├── `README.md`: This README file.\
 ├── `docker`: In the tutorial, I suggest the reader create a directory for all Docker projects.\
-│   ├── `dockerfiles`: Directories for two Dockerfiles, described in [WordPress and Docker: Build custom images with Dockerfiles](https://www.massolit-media.com/    tech-writing/wordpress-and-docker-dockerfiles/).\
+│   ├── `dockerfiles`: Directories for two Dockerfiles, described in [WordPress and Docker: Build custom images with Dockerfiles](https://www.massolit-media.com/teßch-writing/wordpress-and-docker-dockerfiles/).\
 │   │   ├── `phpmyadmin`: Create a customized phpMyAdmin image.\
 │   │   │   ├── `dockerfile`: Dockerfile to create a customized phpMyAdmin image.\
 │   │   │   └── `php.ini`: A PHP.ini file to include in the new image using the `COPY` instruction.\
