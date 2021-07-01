@@ -57,4 +57,4 @@ This tutorial requires you to have some familiarity with and knowledge of the Li
      * `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Using Docker Compose](https://www.massolit-media.com/tech-writing/wordpress-and-docker-using-docker-compose/).\
   * `wp_final`: A final version of a Docker Compose project that creates a local WordPress environment.\
     * `docker-compose.yml`: A Docker Compose project discussed in [WordPress and Docker: Putting it all together](https://www.massolit-media.com/tech-writing/wordpress-and-docker-conclusion/). This version includes a configuration that will build images from Dockerfiles before creating the network and containers.\
-* `docker-compose-commented.yml`: A heavily commented version of the Docker Compose file from [WordPress and Docker: Using Docker Compose](https://www.massolit-m
+* `docker-compose-commented.yml`: A heavily commented version of the Docker Compose file from [WordPress and Docker: Using Docker Compose](https://www.massolit-media.com/tech-writing/wordpress-and-docker-using-docker-compose/).
